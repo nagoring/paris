@@ -10,6 +10,11 @@
     },
     "authors": [
         {
+            "name": "nagomi neko",
+            "email": "nagomi.github@gmail.com",
+            "role": "Developer"
+        },
+        {
             "name": "Jamie Matthews",
             "email": "jamie.matthews@gmail.com",
             "homepage": "http://j4mie.org",
@@ -44,6 +49,9 @@
         "phpunit/phpunit": "^4.8"
     },
     "autoload": {
-        "classmap": ["paris.php"]
+        "psr-4": { "Nago\\Component\\Database\\": "" },
+        "exclude-from-classmap": [
+            "/test/"
+        ]
     }
 }
