@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Nago\Component\Database;
+namespace Nago\Component\Database\Exception;
 
 
 use Exception;
