@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Nago\Component\Database;
 
 
@@ -371,7 +370,7 @@ class Model {
 	 * @param  ORM $orm
 	 * @return void
 	 */
-	public function set_orm($orm) {
+	public function set_orm(ORM $orm) {
 		$this->orm = $orm;
 	}
 

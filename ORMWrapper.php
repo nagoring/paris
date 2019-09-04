@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nago\Component\Database;
 
-use ORM;
 
 /**
  * Subclass of Idiorm's ORM class that supports
