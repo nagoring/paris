@@ -1124,6 +1124,10 @@ class ORM implements ArrayAccess {
 
 	/**
 	 * Internal method to add a HAVING condition to the query
+	 * @param $column_name
+	 * @param $separator
+	 * @param $value
+	 * @return $this|ORM
 	 */
 	protected function _add_simple_having($column_name, $separator, $value) {
 		return $this->_add_simple_condition('having', $column_name, $separator, $value);
@@ -1169,6 +1173,10 @@ class ORM implements ArrayAccess {
 
 	/**
 	 * Internal method to add a WHERE condition to the query
+	 * @param $column_name
+	 * @param $separator
+	 * @param $value
+	 * @return $this|ORM
 	 */
 	protected function _add_simple_where($column_name, $separator, $value) {
 		return $this->_add_simple_condition('where', $column_name, $separator, $value);
@@ -1227,6 +1235,11 @@ class ORM implements ArrayAccess {
 	 * of the call to _quote_identifier
 	 *
 	 * If column_name is an associative array, it will add a condition for each column
+	 * @param $type
+	 * @param $column_name
+	 * @param $separator
+	 * @param $value
+	 * @return $this|ORM
 	 */
 	protected function _add_simple_condition($type, $column_name, $separator, $value) {
 		$multiple = is_array($column_name) ? $column_name : array($column_name => $value);
@@ -1302,6 +1315,9 @@ class ORM implements ArrayAccess {
 	 *
 	 * If you use an array in $column_name, a new clause will be
 	 * added for each element. In this case, $value is ignored.
+	 * @param $column_name
+	 * @param null $value
+	 * @return $this|ORM
 	 */
 	public function where($column_name, $value=null) {
 		return $this->where_equal($column_name, $value);
@@ -1310,6 +1326,9 @@ class ORM implements ArrayAccess {
 	/**
 	 * More explicitly named version of for the where() method.
 	 * Can be used if preferred.
+	 * @param $column_name
+	 * @param null $value
+	 * @return $this|ORM
 	 */
 	public function where_equal($column_name, $value=null) {
 		return $this->_add_simple_where($column_name, '=', $value);
@@ -1317,6 +1336,9 @@ class ORM implements ArrayAccess {
 
 	/**
 	 * Add a WHERE column != value clause to your query.
+	 * @param $column_name
+	 * @param null $value
+	 * @return $this|ORM
 	 */
 	public function where_not_equal($column_name, $value=null) {
 		return $this->_add_simple_where($column_name, '!=', $value);
@@ -2077,6 +2099,8 @@ class ORM implements ArrayAccess {
 	/**
 	 * Save any fields which have been modified on this object
 	 * to the database.
+	 * @return bool
+	 * @throws Exception
 	 */
 	public function save() {
 		$query = array();

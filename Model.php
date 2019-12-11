@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Nago\Component\Database;
 
 
+use Nago\Component\Database\Exception\ParisMethodMissingException;
+
 /**
  * Model base class. Your model objects should extend
  * this class. A minimal subclass would look like:
@@ -21,6 +23,7 @@ namespace Nago\Component\Database;
  * @method bool isDirty($property)
  * @method bool isNew()
  * @method Array asArray()
+ * @method ORM|ORMWrapper where($column_name, $value=null)
  */
 class Model {
 
@@ -216,8 +219,9 @@ class Model {
 	 * @param  null|string $foreign_key_name
 	 * @param  null|string $foreign_key_name_in_current_models_table
 	 * @param  null|string $connection_name
-	 * @return ORMWrapper
+	 * @return ORM|ORMWrapper
 	 */
+
 	protected function _has_one_or_many($associated_class_name, $foreign_key_name=null, $foreign_key_name_in_current_models_table=null, $connection_name=null) {
 		$base_table_name = self::_get_table_name(get_class($this));
 		$foreign_key_name = self::_build_foreign_key_name($foreign_key_name, $base_table_name);
@@ -481,7 +485,8 @@ class Model {
 	/**
 	 * Save the data associated with this model instance to the database.
 	 *
-	 * @return null
+	 * @return bool
+	 * @throws \Exception
 	 */
 	public function save() {
 		return $this->orm->save();
